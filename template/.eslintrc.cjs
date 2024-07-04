@@ -17,7 +17,7 @@ module.exports = {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react/react-in-jsx-scope': 'off',
     'react/no-unescaped-entities': 'off',
-    'prettier/prettier': ['error', { "singleQuote": true, "printWidth": 100 }],
+    'prettier/prettier': ['error', { "singleQuote": true, "printWidth": 100 , "endOfLine": "auto"}],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-unused-expressions': 1,

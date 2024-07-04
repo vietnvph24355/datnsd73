@@ -32,7 +32,6 @@ export const transactionColumns: GridColDef<TransactionRowData>[] = [
     renderCell: (params) => {
       let color: 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' =
         'default';
-
       switch (params.value) {
         case 'paid':
           color = 'success';
