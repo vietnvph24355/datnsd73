@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -105,6 +106,17 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.gmail =:gmail")
     User findGmail1(String gmail);
 
+    User findUserByGmail(String gmail);
+
+    boolean existsByGmail(String gmail);
+
+    @Query("SELECT s FROM User s " +
+            "WHERE s.role.id = 3")
+    List<User> findAllNhanVienExcel();
+
+    @Query("SELECT s FROM User s " +
+            "WHERE s.role.id = 2")
+    List<User> findAllClientExcel();
 
 
 }

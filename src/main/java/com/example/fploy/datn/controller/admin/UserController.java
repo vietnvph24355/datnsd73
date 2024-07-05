@@ -20,17 +20,7 @@ public class UserController {
     private UserService service;
 
 
-    @GetMapping("/client")
-    public ResponseEntity<?> getAllClient(@RequestParam(name = "page", defaultValue = "1") Integer page,
-                                          @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
-                                          @RequestParam(name = "sortField", required = false) String sortField,
-                                          @RequestParam(name = "sortOrder", defaultValue = "", required = false) String sortOrder,
-                                          @RequestParam(name = "searchText", defaultValue = "") String searchText,
-                                          @RequestParam(name = "status", defaultValue = "")Boolean status,
-                                          @RequestParam(name = "gender", defaultValue = "")Boolean gender
-    ){
-        return ResponseEntity.ok(service.getAllClient(page,pageSize,sortField,sortOrder,searchText,gender,status).getContent());
-    }
+
     @GetMapping("/admin")
     public ResponseEntity<?> getAllAdmin( @RequestParam(name = "page", defaultValue = "1") Integer page,
                                           @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
