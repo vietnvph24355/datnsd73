@@ -31,6 +31,6 @@ public interface UserService {
 
     User findById(Integer id);
 
-    byte[] exportExcelUserAdmin() throws IOException;
+    byte[] exportExcelUserStaff() throws IOException;
     byte[] exportExcelClient() throws IOException;
 }

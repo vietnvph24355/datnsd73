@@ -1,4 +1,4 @@
-package com.example.fploy.datn.service.ipml;
+package com.example.fploy.datn.service;
 
 import com.example.fploy.datn.entity.User;
 import com.example.fploy.datn.model.QuenMatKhauRequest.QuenMatKhauRequest;
