@@ -44,7 +44,6 @@ public class SecurityConfiguration {
                         .requestMatchers(new AntPathRequestMatcher("/admin/api/loai-de/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/admin/api/dia-hinh-san/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/admin/api/kich-co/**")).permitAll()
-//                        .requestMatchers(new AntPathRequestMatcher("/admin/api/thuong-hieu/**")).permitAll()
 //                        .requestMatchers(new AntPathRequestMatcher("/admin/api/file/**")).permitAll()
 //                        .requestMatchers(new AntPathRequestMatcher("/admin/api/chi-tiet-san-pham/**")).permitAll()
 //                        .requestMatchers(new AntPathRequestMatcher("/admin/api/hinh-anh-san-pham/**")).permitAll()

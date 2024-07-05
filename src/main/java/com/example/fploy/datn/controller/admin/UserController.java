@@ -21,7 +21,7 @@ public class UserController {
 
 
 
-    @GetMapping()
+    @GetMapping("/admin")
     public ResponseEntity<?> getAllAdmin( @RequestParam(name = "page", defaultValue = "1") Integer page,
                                           @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
                                           @RequestParam(name = "sortField", required = false) String sortField,

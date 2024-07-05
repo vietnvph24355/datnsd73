@@ -16,8 +16,14 @@ public class SendEmailService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+//    @Autowired
+//    private JavaMailSender javaMailSender;
+
+    private  JavaMailSender mailSender;
+
+    public void EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     @Value("$(spring.mail.username)")
     String fromEmail;
@@ -31,7 +37,7 @@ public class SendEmailService {
         message.setTo(user.getGmail());
         message.setSubject(subject);
         message.setText(content);
-        javaMailSender.send(message);
+        mailSender.send(message);
     }
 
     public String randomPasswords() {
