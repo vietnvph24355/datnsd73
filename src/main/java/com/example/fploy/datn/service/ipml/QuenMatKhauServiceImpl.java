@@ -4,6 +4,7 @@ import com.example.fploy.datn.config.sendEmail.SendEmailService;
 import com.example.fploy.datn.entity.User;
 import com.example.fploy.datn.model.QuenMatKhauRequest.QuenMatKhauRequest;
 import com.example.fploy.datn.repository.UserRepository;
+import com.example.fploy.datn.service.QuenMatKhauService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class QuenMatKhauServiceImpl implements QuenMatKhauService{
+public class QuenMatKhauServiceImpl implements QuenMatKhauService {
     @Autowired
     private UserRepository userRepository;
 

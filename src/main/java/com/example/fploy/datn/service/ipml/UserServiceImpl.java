@@ -289,7 +289,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public byte[] exportExcelUserAdmin() throws IOException {
+    public byte[] exportExcelUserStaff() throws IOException {
 
         List<User> userList = userRepository.findAllNhanVienExcel();
         // Implement this method in your service

@@ -2,7 +2,7 @@ package com.example.fploy.datn.controller.admin;
 
 import com.example.fploy.datn.entity.User;
 import com.example.fploy.datn.model.QuenMatKhauRequest.QuenMatKhauRequest;
-import com.example.fploy.datn.service.ipml.QuenMatKhauService;
+import com.example.fploy.datn.service.QuenMatKhauService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -21,7 +21,7 @@ public class UserController {
 
 
 
-    @GetMapping("/admin")
+    @GetMapping()
     public ResponseEntity<?> getAllAdmin( @RequestParam(name = "page", defaultValue = "1") Integer page,
                                           @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
                                           @RequestParam(name = "sortField", required = false) String sortField,
@@ -33,17 +33,7 @@ public class UserController {
         return ResponseEntity.ok(service.getAllAdmin(page,pageSize,sortField,sortOrder,searchText,gender,status).getContent());
     }
 
-    @GetMapping("/staff")
-    public ResponseEntity<?> getAllStaff( @RequestParam(name = "page", defaultValue = "1") Integer page,
-                                          @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
-                                          @RequestParam(name = "sortField", required = false) String sortField,
-                                          @RequestParam(name = "sortOrder", defaultValue = "", required = false) String sortOrder,
-                                          @RequestParam(name = "searchText", defaultValue = "") String searchText,
-                                          @RequestParam(name = "status", defaultValue = "")Boolean status,
-                                          @RequestParam(name = "gender", defaultValue = "")Boolean gender
-    ){
-        return ResponseEntity.ok(service.getAllStaff(page,pageSize,sortField,sortOrder,searchText,gender,status).getContent());
-    }
+
 
 
 
