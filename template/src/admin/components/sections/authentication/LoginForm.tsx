@@ -13,12 +13,12 @@ import {
   Typography,
 } from '@mui/material';
 import IconifyIcon from 'admin/components/base/IconifyIcon';
+import { LoginData, LoginUser } from 'admin/data/interface/user';
 import { ChangeEvent, useState } from 'react';
-import { UserLogin } from '/admin/data/interface/user';
-import { HienThiUser } from 'api/api-admin/api-login';
+import { toast, ToastContainer } from 'react-toastify';
 
 const LoginForm = () => {
-  const [click, setClick] = useState<UserLogin>({ email: '', password: '' });
+  const [user, setUser] = useState<LoginData>({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -27,28 +27,29 @@ const LoginForm = () => {
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'Email':
-        setClick({ email: value, password: click?.password });
+        setUser({ email: value, password: user?.password });
         break;
       case 'Password':
-        setClick({ email: click?.email, password: value });
+        setUser({ email: user?.email, password: value });
         break;
       default:
         break;
     }
-    HienThiUser(click);
   };
-  const HandleOnsubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data: UserLogin = {
-      email: formData.get('Email') as string,
-      password: formData.get('Password') as string,
-    };
-    console.log('Username:', data.email);
-    console.log('Password:', data.password);
+
+  const HandelLogin = async () => {
+    if (!user.email || !user.password){
+      toast.error("Vui lòng nhập Email và Password");
+      return;
+    }
+    let res = await LoginUser(user);
+    console.log(res);
+    if(res && res.token){
+      localStorage.setItem("token", res.token);
+    }
   };
   return (
-    <form onSubmit={HandleOnsubmit}>
+    <form>
       <Box
         sx={{
           mt: { sm: 5, xs: 2.5 },
@@ -105,8 +106,7 @@ const LoginForm = () => {
           variant="contained"
           size="large"
           fullWidth
-          // component={Link}
-          type="submit"
+          onClick={() => HandelLogin()}
         >
           Sign In
         </Button>
@@ -138,6 +138,7 @@ const LoginForm = () => {
             Or sign in using:
           </Typography>
           <Button
+            onClick={() => HandelLogin()}
             startIcon={<IconifyIcon icon="flat-color-icons:google" />}
             variant="outlined"
             sx={{ typography: { sm: 'button', xs: 'subtitle1', whiteSpace: 'nowrap' } }}
@@ -153,6 +154,7 @@ const LoginForm = () => {
           </Button>
         </Stack>
       </Box>
+      <ToastContainer/ >
     </form>
   );
 };
