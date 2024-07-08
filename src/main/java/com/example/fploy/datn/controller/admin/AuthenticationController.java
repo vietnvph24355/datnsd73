@@ -19,14 +19,16 @@ public class AuthenticationController {
 
     private AuthenticationService authenticationService;
 
-    @Autowired
-    private UserService service;
-
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
-    // Dang nhap
+    @Autowired
+    private UserService service;
+
+
+
+    // Dang ky
     @PostMapping("/sign-up")
     public ResponseEntity<User> signUp(@RequestBody SingUpRequest request){
         return ResponseEntity.ok(authenticationService.signup(request));
@@ -37,7 +39,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.addAdmin());
     }
 
-    //Dang ky
+    //Dang nhap
     @PostMapping("/sign-in")
     public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody SigninRequest request){
         return ResponseEntity.ok(authenticationService.signin(request));
