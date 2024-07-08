@@ -34,7 +34,7 @@ const Dashboard = () => {
           <SalesSection />
         </Grid>
       </Grid>
-      {/* /* ------------- Table section ----------------
+      {/* /* ------------- Table section ---------------- */}
       <Grid container spacing={3} mb={3}>
         <Grid item xs={12} xl={6} zIndex={1}>
           <TransactionTable />
@@ -42,7 +42,7 @@ const Dashboard = () => {
         <Grid item xs={12} xl={6}>
           <TopProductsTable />
         </Grid>
-      </Grid> */}
+      </Grid>
       {/* /* ------------- Team section ---------------- */}
       <Grid container spacing={3} mb={3}>
         <Grid item xs={12} md={12} xl={4}>
