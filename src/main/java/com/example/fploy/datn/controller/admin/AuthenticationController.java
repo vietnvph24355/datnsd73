@@ -34,7 +34,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.signup(request));
     }
 
-    @GetMapping("a")
+    @GetMapping("/admin")
     public ResponseEntity<?> add(){
         return ResponseEntity.ok(authenticationService.addAdmin());
     }
