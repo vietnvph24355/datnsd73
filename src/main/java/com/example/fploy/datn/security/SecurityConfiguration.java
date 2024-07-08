@@ -57,8 +57,8 @@ public class SecurityConfiguration {
 //                        .requestMatchers(new AntPathRequestMatcher("/admin/api/voucher-chi-tiet/**")).permitAll()
 //                        .requestMatchers(new AntPathRequestMatcher("/admin/api/voucher/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/admin/api/**")).hasAnyAuthority("ADMIN","STAFF")
-//                        .requestMatchers(new AntPathRequestMatcher("/admin/api/hoa-don/**")).hasAnyAuthority("EMPLOYEE")
-//                        .requestMatchers(new AntPathRequestMatcher("/api/**", "/client/api/don-hang/**")).hasAnyAuthority("CLIENT")
+                        .requestMatchers(new AntPathRequestMatcher("/admin/api/hoa-don/**")).hasAnyAuthority("CLIENT")
+                        .requestMatchers(new AntPathRequestMatcher("/api/**", "/client/api/don-hang/**")).hasAnyAuthority("CLIENT")
 
                         .anyRequest().authenticated())
 
