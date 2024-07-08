@@ -28,4 +28,7 @@ public class SocialAccountCreateRequest {
     @NotBlank
     @Size(min = 6)
     private String name;
+
+    @NotBlank
+    private String userName;
 }

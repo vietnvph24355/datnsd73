@@ -29,4 +29,7 @@ public class SocialAccountUpdateRequest {
     @NotBlank
     @Size(min = 6)
     private String name;
+
+    @NotBlank
+    private String userName;
 }
