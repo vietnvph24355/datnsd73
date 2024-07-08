@@ -15,11 +15,14 @@ import {
 import IconifyIcon from 'admin/components/base/IconifyIcon';
 import { LoginData, LoginUser } from 'admin/data/interface/user';
 import { ChangeEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
 const LoginForm = () => {
-  const [user, setUser] = useState<LoginData>({ email: '', password: '' });
+  const [user, setUser] = useState<LoginData>({ gmail: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
+  const navigate = useNavigate();
   const handleClickShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
@@ -27,10 +30,10 @@ const LoginForm = () => {
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'Email':
-        setUser({ email: value, password: user?.password });
+        setUser({ gmail: value, password: user?.password });
         break;
       case 'Password':
-        setUser({ email: user?.email, password: value });
+        setUser({ gmail: user?.gmail, password: value });
         break;
       default:
         break;
@@ -38,15 +41,20 @@ const LoginForm = () => {
   };
 
   const HandelLogin = async () => {
-    if (!user.email || !user.password){
-      toast.error("Vui lòng nhập Email và Password");
+    if (!user.gmail || !user.password) {
+      toast.error('Vui lòng nhập Email và Password');
       return;
     }
-    let res = await LoginUser(user);
-    console.log(res);
-    if(res && res.token){
-      localStorage.setItem("token", res.token);
+    setLoadingLogin(true);
+    const res = await LoginUser(user);
+    if (res && res.tokens) {
+      sessionStorage.setItem('token', res.tokens);
+      sessionStorage.setItem('user', JSON.stringify(res));
+      await navigate('/');
+    } else {
+      toast.error('Thông tin tài khoản hoặc mật khẩu không chính xác');
     }
+    setLoadingLogin(false);
   };
   return (
     <form>
@@ -107,6 +115,7 @@ const LoginForm = () => {
           size="large"
           fullWidth
           onClick={() => HandelLogin()}
+          disabled={loadingLogin}
         >
           Sign In
         </Button>
@@ -154,7 +163,7 @@ const LoginForm = () => {
           </Button>
         </Stack>
       </Box>
-      <ToastContainer/ >
+      <ToastContainer />
     </form>
   );
 };

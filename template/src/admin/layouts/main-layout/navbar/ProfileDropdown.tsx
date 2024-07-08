@@ -11,16 +11,36 @@ import {
 } from '@mui/material';
 import AvatarImage from 'admin/assets/images/avatar.svg';
 import IconifyIcon from 'admin/components/base/IconifyIcon';
+import { logoutUser, UserRes } from 'admin/data/interface/user';
 import { profileOptions } from 'admin/data/navbar/menu-data';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ProfileDropdown = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [user, setUser] = useState<UserRes>();
+  const naviaget = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
+  useEffect(() => {
+    const userString = sessionStorage.getItem('user');
+    if (userString !== null) {
+      const userPase = JSON.parse(userString);
+      setUser(userPase);
+    }
+  }, []);
+  const logout = async () => {
+    try {
+      await naviaget('authentication/login');
+      await logoutUser();
+      toast.success('');
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -56,7 +76,7 @@ const ProfileDropdown = () => {
               display: { xs: 'none', sm: 'block' },
             }}
           >
-            X’eriya Ponald
+            {user?.name}
           </Typography>
         </Stack>
       </ButtonBase>
@@ -101,6 +121,7 @@ const ProfileDropdown = () => {
               width: '80%',
               py: 0.5,
             }}
+            onClick={() => logout()}
           >
             Logout
           </Button>

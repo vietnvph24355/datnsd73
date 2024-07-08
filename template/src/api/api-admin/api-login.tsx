@@ -1,5 +1,5 @@
-import { UserLogin } from '/admin/data/interface/user';
+import { UserRes } from '/admin/data/interface/user';
 
-export const HienThiUser = (data: UserLogin) => {
+export const HienThiUser = (data: UserRes) => {
   console.log(data);
 };
