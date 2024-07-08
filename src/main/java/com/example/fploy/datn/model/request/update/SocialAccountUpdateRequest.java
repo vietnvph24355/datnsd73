@@ -1,6 +1,5 @@
-package com.example.fploy.datn.model.request.create;
+package com.example.fploy.datn.model.request.update;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -13,7 +12,9 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Setter
-public class SocialAccountCreateRequest {
+public class SocialAccountUpdateRequest {
+
+    private Integer id;
 
     @NotBlank
     private String providerID;
