@@ -25,7 +25,7 @@ public class QuenMatKhauServiceImpl implements QuenMatKhauService {
     @Override
     public void sendEmail(User user) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("beesport.fpoly@gmail.com");
+        message.setFrom("beesport.sd73@gmail.com");
         String subject = "[BEE SPORT] Chào mừng bạn đến với bee sport, đây là mật khẩu của bạn";
         String content = "Mật khẩu: " + sendEmailService.randomPasswords();
         content = content.replace("Mật khẩu: ", "");

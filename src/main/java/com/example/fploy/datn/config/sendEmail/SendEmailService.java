@@ -6,18 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Service
+@Component
 public class SendEmailService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    private JavaMailSender javaMailSender;
+    private JavaMailSender mailSender;
+
 
     @Value("$(spring.mail.username)")
     String fromEmail;
@@ -31,7 +32,7 @@ public class SendEmailService {
         message.setTo(user.getGmail());
         message.setSubject(subject);
         message.setText(content);
-        javaMailSender.send(message);
+        mailSender.send(message);
     }
 
     public String randomPasswords() {
