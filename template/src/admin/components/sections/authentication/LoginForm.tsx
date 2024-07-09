@@ -21,16 +21,23 @@ import { toast, ToastContainer } from 'react-toastify';
 const LoginForm = () => {
   const [user, setUser] = useState<LoginData>({ gmail: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
+  const [errGmail, setErrGmail] = useState('');
   const [loadingLogin, setLoadingLogin] = useState(false);
   const navigate = useNavigate();
   const handleClickShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
   const HandleOnchangeForm = (e: ChangeEvent<HTMLInputElement>) => {
+    const pattenGmail = /^[a-zA-Z0-9._%-]+@gmail.com$/;
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'Email':
-        setUser({ gmail: value, password: user?.password });
+        if (!value.match(new RegExp(pattenGmail))) {
+          setErrGmail('Định dạng gmail không chính xác');
+        } else {
+          setUser({ gmail: value, password: user?.password });
+          setErrGmail('');
+        }
         break;
       case 'Password':
         setUser({ gmail: user?.gmail, password: value });
@@ -39,7 +46,6 @@ const LoginForm = () => {
         break;
     }
   };
-
   const HandelLogin = async () => {
     if (!user.gmail || !user.password) {
       toast.error('Vui lòng nhập Email và Password');
@@ -73,6 +79,7 @@ const LoginForm = () => {
             name="Email"
             onChange={HandleOnchangeForm}
           />
+          {errGmail && <p style={{ color: 'red' }}>{errGmail}</p>}
           <TextField
             fullWidth
             variant="outlined"
