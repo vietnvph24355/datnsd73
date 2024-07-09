@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,7 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration {
+public class SecurityConfiguration{
 
     private JwtuthenticationFilter jwtuthenticationFilter;
 
@@ -66,6 +67,23 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtuthenticationFilter, UsernamePasswordAuthenticationFilter.class
                 ).build();
+
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        return http.authorizeHttpRequests(auth -> auth.requestMatchers(new AntPathRequestMatcher("/api/**")).permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/admin/api/**")).hasAnyAuthority("ADMIN","STAFF")
+                    .requestMatchers(new AntPathRequestMatcher("/api/**")).hasAnyAuthority("CLIENT")
+                    .requestMatchers(new AntPathRequestMatcher("/admin/api/hoa-don/**")).hasAnyAuthority("CLIENT")
+                    .requestMatchers(new AntPathRequestMatcher("/api/**", "/client/api/don-hang/**")).hasAnyAuthority("CLIENT")
+
+                    .anyRequest().authenticated()
+        )
+                .oauth2Login(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults())
+                .build();
+
 
     }
 
