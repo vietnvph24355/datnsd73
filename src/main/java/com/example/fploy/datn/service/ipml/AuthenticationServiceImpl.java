@@ -70,6 +70,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         user.setName(signUpRequest.getName());
         user.setGmail(signUpRequest.getGmail());
+        user.setPhone(signUpRequest.getSdt());
         user.setRole(roleRepository.findId(Integer.valueOf(2)));
         user.setIsActivate(true);
         user.setAvatar("defaultAvatar.jpg");
@@ -126,7 +127,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         jwtAuthenticationResponse.setRefreshToken(refreshToken);
         jwtAuthenticationResponse.setRoleId(taiKhoan.getRole().getId());
         jwtAuthenticationResponse.setAcountId(taiKhoan.getId());
-        jwtAuthenticationResponse.setGmail(taiKhoan.getPhone());
+        jwtAuthenticationResponse.setGmail(taiKhoan.getGmail());
         jwtAuthenticationResponse.setName(taiKhoan.getName());
         jwtAuthenticationResponse.setAvatar(taiKhoan.getAvatar());
 //        jwtAuthenticationResponse.setIdGioHang(gioHang.getId());
