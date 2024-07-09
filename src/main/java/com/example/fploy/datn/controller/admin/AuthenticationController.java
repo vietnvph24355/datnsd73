@@ -10,7 +10,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -43,6 +46,12 @@ public class AuthenticationController {
     @PostMapping("/sign-in")
     public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody SigninRequest request){
         return ResponseEntity.ok(authenticationService.signin(request));
+    }
+
+    // Dang nhap gg
+    @GetMapping("/google")
+    public Map<String, Object> currentUser(OAuth2AuthenticationToken oAuth2AuthenticationToken){
+        return oAuth2AuthenticationToken.getPrincipal().getAttributes();
     }
 
     @PostMapping("/refresh")
