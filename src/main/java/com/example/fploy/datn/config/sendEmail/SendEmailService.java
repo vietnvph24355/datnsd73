@@ -6,24 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Service
+@Component
 public class SendEmailService {
 
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private JavaMailSender javaMailSender;
+    @Autowired
+    private JavaMailSender mailSender;
 
-    private  JavaMailSender mailSender;
-
-    public void EmailService(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
 
     @Value("$(spring.mail.username)")
     String fromEmail;
