@@ -50,8 +50,8 @@ public class AuthenticationController {
 
     // Dang nhap gg
     @GetMapping("/google")
-    public Map<String, Object> currentUser(OAuth2AuthenticationToken oAuth2AuthenticationToken){
-        return oAuth2AuthenticationToken.getPrincipal().getAttributes();
+    public String LoginGG(){
+       return null;
     }
 
     @PostMapping("/refresh")
