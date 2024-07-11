@@ -10,7 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -50,9 +52,10 @@ public class AuthenticationController {
 
     // Dang nhap gg
     @GetMapping("/google")
-    public String LoginGG(){
-       return null;
-    }
+        public Map<String, Object> google(@AuthenticationPrincipal OidcUser oidcUser) {
+            return oidcUser.getAttributes();
+        }
+
 
     @PostMapping("/refresh")
     public ResponseEntity<JwtAuthenticationResponse> refresh(@RequestBody RefreshTokenRequest refreshTokenRequest){

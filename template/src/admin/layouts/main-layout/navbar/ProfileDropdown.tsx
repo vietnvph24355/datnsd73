@@ -36,7 +36,9 @@ const ProfileDropdown = () => {
     try {
       await naviaget('authentication/login');
       await logoutUser();
-      toast.success('');
+      sessionStorage.removeItem('user');
+      sessionStorage.removeItem('token');
+      toast.success('Đăng xuất thành công');
     } catch (error) {
       console.error(error);
     }

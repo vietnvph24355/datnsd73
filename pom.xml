@@ -107,7 +107,7 @@
             <version>6.2.3</version>
         </dependency>
 
-        <!-- Spring Boot Jsonweb-->
+        <!-- Spring Boot Jwt -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
