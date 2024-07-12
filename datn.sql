@@ -1,6 +1,6 @@
-create DATABASE datnsd73
+create DATABASE datnsd73_2
 GO
-use datnsd73
+use datnsd73_2
 GO
 CREATE TABLE [Product] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
@@ -118,13 +118,17 @@ GO
 
 CREATE TABLE [voucher] (
   [id] integer PRIMARY KEY IDENTITY(1, 1),
+  [ma] VARCHAR(255) not null,
   [giam_gia] float NOT NULL,
+  [don_toi_Thieu] decimal(18,2),
+  [giam_toi_da] decimal(18,2),
   [sl_ap_dung] int,
   [create_at] date,
   [update_at] date,
   [date_begin] date,
   [date_end] date,
-  [status] int
+  [status] VARCHAR (200) check ([status] in( 'ACTIVE', 'EXPIRED', 'INACTIVE', 'UPCOMING'))
+  -- [status] int
 )
 GO
 
@@ -204,3 +208,16 @@ GO
 
 ALTER TABLE [comment] ADD FOREIGN KEY ([id_product]) REFERENCES [Product] ([id])
 GO
+
+-- Thêm cột [ma] [don_toi_Thieu] decimal(18,2),[giam_toi_da] decimal(18,2) vào voucher 
+-- Sửa trang thái status từ int qua varchar
+-- ALTER TABLE [voucher] ADD [ma] VARCHARVA(255),
+-- [don_toi_Thieu] decimal(18,2),
+-- [giam_toi_da] decimal(18,2)
+
+
+-- Alter table [voucher] alter column [status] check ([status] in( 'ACTIVE', 'EXPIRED', 'INACTIVE', 'UPCOMING'))
+
+-- ALTER TABLE [voucher]
+-- ADD [status] VARCHAR(255) CHECK([dto.voucher.status]IN('ACTIVE', 'EXPIRED', 'INACTIVE', 'UPCOMING'))
+SELECT * FROM voucher
