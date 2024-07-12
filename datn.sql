@@ -118,9 +118,12 @@ GO
 
 CREATE TABLE [voucher] (
   [id] integer PRIMARY KEY IDENTITY(1, 1),
+  [ma] VARCHAR(255) not null,
   [giam_gia] float NOT NULL,
-  [sl_ap_dung] int,
-  [create_at] date,
+  [don_toi_Thieu] decimal(18,2),
+  [giam_toi_da] decimal(18,2),
+  [sl_ap_dung] TIMESTAMP,
+  [create_at] TIMESTAMP,
   [update_at] date,
   [date_begin] date,
   [date_end] date,
@@ -136,7 +139,7 @@ CREATE TABLE [token] (
   [revoked] int NOT NULL,
   [expired] int NOT NULL,
   [user_id] int
-)
+)I
 GO
 
 CREATE TABLE [social_account] (
@@ -204,3 +207,16 @@ GO
 
 ALTER TABLE [comment] ADD FOREIGN KEY ([id_product]) REFERENCES [Product] ([id])
 GO
+
+-- Thêm cột [ma] [don_toi_Thieu] decimal(18,2),[giam_toi_da] decimal(18,2) vào voucher 
+-- Sửa trang thái status từ int qua varchar
+-- Sua begindate, enddate tu date qua TIMESTAMP
+-- ALTER TABLE [voucher] ADD [ma] VARCHARVA(255),
+-- [don_toi_Thieu] decimal(18,2),
+-- [giam_toi_da] decimal(18,2)
+
+-- Alter table [voucher] alter column [date_begin] TIMESTAMP
+-- Alter table [voucher] alter column [date_end] TIMESTAMP
+-- Alter table [voucher] alter column [status] check ([status] in( 'ACTIVE', 'EXPIRED', 'INACTIVE', 'UPCOMING'))
+
+-- SELECT * FROM voucher
