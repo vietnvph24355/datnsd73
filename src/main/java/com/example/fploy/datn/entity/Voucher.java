@@ -10,7 +10,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("serial")

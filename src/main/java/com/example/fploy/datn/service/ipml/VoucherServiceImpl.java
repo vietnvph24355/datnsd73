@@ -80,42 +80,43 @@ public class VoucherServiceImpl implements VoucherService {
 
     @Override
     public VoucherResponseCreate add(VoucherResponseCreate request) {
-        if(repository.existsByMa(request.getMa())){
-            throw new BadRequestException("Ma da ton tai trong he thong");
-        }
-        Voucher created = mapper.map(request, Voucher.class);
-        created.setMa(request.getMa());
-
-        TrangThaiVoucher status = voucherUtils.setTrangThaiVoucher(
-                created.getDateBegin(),
-                created.getDateEnd()
-        );
-        created.setStatus(status);
-        Voucher save = this.repository.save(created);
-
-        return mapper.map(save, VoucherResponseCreate.class);
+//        if(repository.existsByMa(request.getMa())){
+//            throw new BadRequestException("Ma da ton tai trong he thong");
+//        }
+//        Voucher created = mapper.map(request, Voucher.class);
+//        created.setMa(request.getMa());
+//
+//        TrangThaiVoucher status = voucherUtils.setTrangThaiVoucher(
+//                created.getDateBegin(),
+//                created.getDateEnd()
+//        );
+//        created.setStatus(status);
+//        Voucher save = this.repository.save(created);
+//
+//        return mapper.map(save, VoucherResponseCreate.class);
+        return null;
     }
 
     @Override
     public VoucherResponseUpdate update(Integer id, VoucherResponseUpdate request) {
-        Optional<Voucher> optional = repository.findById(id);
-        if(optional.isEmpty()){
-            throw new BadRequestException("Voucher khong ton tai");
-        }
-
-        if(!request.getMa().equals(optional.get().getMa()) && repository.existsByMa(request.getMa())){
-            throw new BadRequestException("Ma voucher đã tồn tại trong hệ thống!");
-        }
-        Voucher detail = optional.get();
-        TrangThaiVoucher status = voucherUtils.setTrangThaiVoucher(
-                request.getDateBegin(), request.getDateEnd()
-        );
-        request.setId(detail.getId());
-        request.setStatus(status);
-        mapper.map(request, detail);
-        Voucher voucherUpdate = this.repository.save(detail);
-        return mapper.map(voucherUpdate, VoucherResponseUpdate.class);
-
+//        Optional<Voucher> optional = repository.findById(id);
+//        if(optional.isEmpty()){
+//            throw new BadRequestException("Voucher khong ton tai");
+//        }
+//
+//        if(!request.getMa().equals(optional.get().getMa()) && repository.existsByMa(request.getMa())){
+//            throw new BadRequestException("Ma voucher đã tồn tại trong hệ thống!");
+//        }
+//        Voucher detail = optional.get();
+//        TrangThaiVoucher status = voucherUtils.setTrangThaiVoucher(
+//                request.getDateBegin(), request.getDateEnd()
+//        );
+//        request.setId(detail.getId());
+//        request.setStatus(status);
+//        mapper.map(request, detail);
+//        Voucher voucherUpdate = this.repository.save(detail);
+//        return mapper.map(voucherUpdate, VoucherResponseUpdate.class);
+return null;
     }
 
     @Override
