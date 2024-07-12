@@ -1,10 +1,10 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import BreakpointsProvider from 'providers/useBreakPoint';
+import BreakpointsProvider from 'admin/providers/useBreakPoint';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import router from 'routes/router';
-import { theme } from 'theme/theme';
+import router from 'admin/routes/router';
+import { theme } from 'admin/theme/theme';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 
