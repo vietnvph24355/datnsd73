@@ -13,6 +13,7 @@ public enum TrangThaiVoucher {
         ONGOING,
         ENDING_SOON,
         EXPIRED,
-        OUT_OF_STOCK
+        OUT_OF_STOCK,
+        CANCELLED
 
 }

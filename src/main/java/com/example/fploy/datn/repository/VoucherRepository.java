@@ -24,6 +24,7 @@ public interface VoucherRepository extends JpaRepository<Voucher, Integer> {
                             Date ngayBatDau, Date ngayKetThuc);
 
     Optional<Voucher> findByMa(String ma);
+    boolean existsByMa(String ma);
 
     @Query("SELECT v FROM Voucher v WHERE v.status IN ('ONGOING', 'UPCOMING', 'ENDING_SOON') ORDER BY v.updateAt DESC")
     List<Voucher> getListVoucher();
@@ -51,7 +52,7 @@ public interface VoucherRepository extends JpaRepository<Voucher, Integer> {
             "FROM Order hd " +
             "WHERE hd.voucher.id = :idVoucher " +
             "AND hd.users.id = :idTaiKhoan")
-    Long soLanDaSuDungVoucherTaiKhoan(@Param("idVoucher") Long idVoucher,
-                                      @Param("idTaiKhoan") Long idTaiKhoan);
+    Integer soLanDaSuDungVoucherTaiKhoan(@Param("idVoucher") Integer idVoucher,
+                                      @Param("idTaiKhoan") Integer idTaiKhoan);
 
 }

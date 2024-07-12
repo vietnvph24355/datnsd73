@@ -1,5 +1,6 @@
 package com.example.fploy.datn.model.request.create;
 
+import com.example.fploy.datn.entity.trangThai.TrangThaiVoucher;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,14 +9,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class VoucherResponseCreate {
 
-    private Integer id;
+    //private Integer id;
+
+    private String ma;
 
     private Integer slApDung;
 
@@ -31,5 +34,5 @@ public class VoucherResponseCreate {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateEnd;
 
-    private Integer status;
+    private TrangThaiVoucher status;
 }
