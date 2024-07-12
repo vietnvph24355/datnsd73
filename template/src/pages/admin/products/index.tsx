@@ -48,7 +48,6 @@ const ProductsPage = () => {
   const [searchText, setSearchText] = useState('');
   const apiRef = useGridApiRef<GridApi>();
 
-
   useEffect(() => {
     fetch('https://662a087e67df268010a25b8a.mockapi.io/api/v1/user/user')
       .then((response) => response.json())

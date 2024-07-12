@@ -116,7 +116,7 @@ export const routes = [
 ];
 
 const router = createBrowserRouter(routes, {
-  basename: '/modernize-mui-admin',
+  basename: '/bee-shop',
 });
 
 export default router;

@@ -22,15 +22,13 @@ const urlApi = 'http://localhost:8081/api/';
 //     console.error('Lỗi:', error);
 //   });
 
-
-
 const GetAllProducts = async (token: any) => {
   try {
     const response = await fetch(urlApi + 'products', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        Authorization: 'Bearer ' + token,
       },
     }).then((res) => res.json());
     const data = response;
@@ -40,4 +38,4 @@ const GetAllProducts = async (token: any) => {
   }
 };
 
-export { GetAllProducts }
+export { GetAllProducts };
