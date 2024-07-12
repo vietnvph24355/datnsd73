@@ -1,6 +1,6 @@
-create DATABASE datnsd73
+create DATABASE datnsd73_2
 GO
-use datnsd73
+use datnsd73_2
 GO
 CREATE TABLE [Product] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
@@ -122,12 +122,13 @@ CREATE TABLE [voucher] (
   [giam_gia] float NOT NULL,
   [don_toi_Thieu] decimal(18,2),
   [giam_toi_da] decimal(18,2),
-  [sl_ap_dung] TIMESTAMP,
-  [create_at] TIMESTAMP,
+  [sl_ap_dung] int,
+  [create_at] date,
   [update_at] date,
   [date_begin] date,
   [date_end] date,
-  [status] int
+  [status] VARCHAR (200) check ([status] in( 'ACTIVE', 'EXPIRED', 'INACTIVE', 'UPCOMING'))
+  -- [status] int
 )
 GO
 
@@ -139,7 +140,7 @@ CREATE TABLE [token] (
   [revoked] int NOT NULL,
   [expired] int NOT NULL,
   [user_id] int
-)I
+)
 GO
 
 CREATE TABLE [social_account] (
@@ -210,13 +211,13 @@ GO
 
 -- Thêm cột [ma] [don_toi_Thieu] decimal(18,2),[giam_toi_da] decimal(18,2) vào voucher 
 -- Sửa trang thái status từ int qua varchar
--- Sua begindate, enddate tu date qua TIMESTAMP
 -- ALTER TABLE [voucher] ADD [ma] VARCHARVA(255),
 -- [don_toi_Thieu] decimal(18,2),
 -- [giam_toi_da] decimal(18,2)
 
--- Alter table [voucher] alter column [date_begin] TIMESTAMP
--- Alter table [voucher] alter column [date_end] TIMESTAMP
+
 -- Alter table [voucher] alter column [status] check ([status] in( 'ACTIVE', 'EXPIRED', 'INACTIVE', 'UPCOMING'))
 
--- SELECT * FROM voucher
+-- ALTER TABLE [voucher]
+-- ADD [status] VARCHAR(255) CHECK([dto.voucher.status]IN('ACTIVE', 'EXPIRED', 'INACTIVE', 'UPCOMING'))
+SELECT * FROM voucher
