@@ -1,5 +1,5 @@
 import { useState, useEffect, ChangeEvent } from 'react';
-import { Product } from 'data/interface/product';
+import { GetAllProducts, Product } from 'data/interface/product';
 import { DataGrid, GridApi, GridColDef, GridSlots, useGridApiRef } from '@mui/x-data-grid';
 import { LinearProgress, Stack } from '@mui/material';
 import CustomDataGridFooter from 'components/common/table/CustomDataGridFooter';
@@ -21,7 +21,7 @@ const transactionColumnsProduct: GridColDef<Product>[] = [
     type: 'string',
   },
   {
-    field: 'price',
+    field: 'status',
     headerName: 'Giá',
     width: 100,
     type: 'string',
@@ -41,11 +41,13 @@ const transactionColumnsProduct: GridColDef<Product>[] = [
     },
   },
 ];
-
+const token = sessionStorage.getItem('token');
+const products = await GetAllProducts(token);
 const ProductsPage = () => {
   const [product, setProduct] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState('');
   const apiRef = useGridApiRef<GridApi>();
+
 
   useEffect(() => {
     fetch('https://662a087e67df268010a25b8a.mockapi.io/api/v1/user/user')
@@ -56,6 +58,7 @@ const ProductsPage = () => {
       .catch((error) => {
         console.error('Lỗi:', error);
       });
+    console.log(products);
   }, []);
 
   useEffect(() => {

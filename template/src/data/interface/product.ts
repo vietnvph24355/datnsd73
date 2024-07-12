@@ -1,33 +1,43 @@
 export interface Product {
-  id: string;
+  id: number;
+  avatar: string;
   name: string;
-  price: number;
-  image: string;
-  quantity: number;
+  descriptions: string;
+  dateCreate: Date;
+  dateUpdate: Date;
+  status: number;
+  idNsx: number;
+  idLoaiGiay: number;
+  idChatLieu: number;
+  idDeGiay: number;
 }
+const urlApi = 'http://localhost:8081/api/';
+// export const GetAllProducts = fetch(urlApi+'products')
+//   .then((response) => response.json())
+//   .then((data) => {
+//     const myObjects: Product[] = data.map((item: Product) => item);
+//     return myObjects;
+//   })
+//   .catch((error) => {
+//     console.error('Lỗi:', error);
+//   });
 
-class MyObject implements Product {
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-  id: string;
 
-  constructor(obj: Product) {
-    this.name = obj.name;
-    this.price = obj.price;
-    this.quantity = obj.quantity;
-    this.image = obj.image;
-    this.id = obj.id;
+
+const GetAllProducts = async (token: any) => {
+  try {
+    const response = await fetch(urlApi + 'products', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    }).then((res) => res.json());
+    const data = response;
+    return data;
+  } catch (error) {
+    console.log(error.name);
   }
-}
+};
 
-export const GetAllProducts = fetch('https://662a087e67df268010a25b8a.mockapi.io/api/v1/user/user')
-  .then((response) => response.json())
-  .then((data) => {
-    const myObjects: MyObject[] = data.map((item: Product) => new MyObject(item));
-    return myObjects;
-  })
-  .catch((error) => {
-    console.error('Lỗi:', error);
-  });
+export { GetAllProducts }
