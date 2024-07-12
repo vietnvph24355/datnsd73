@@ -57,3 +57,4 @@ dist-ssr
 *.sw?
 *.theme
 src/main/resources/application.properties
+src/main/resources/application.properties
